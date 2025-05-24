@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+* {
+  color-scheme: dark;
+}
+
+html,
+body,
+#root {
+  max-height: 100svh;
+  overflow: hidden;
+  background-color: black;
+}

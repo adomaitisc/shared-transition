@@ -1,0 +1,57 @@
+import type { Transition } from "motion";
+import {
+  motion,
+  type TargetAndTransition,
+  type VariantLabels,
+} from "motion/react";
+
+const Colors = ["bg-emerald-500", "bg-rose-500", "bg-violet-500"];
+
+interface SharedUIProps {
+  id: number;
+  motionProps?: {
+    initial?: TargetAndTransition | VariantLabels | undefined;
+    animate?: TargetAndTransition | VariantLabels | undefined;
+    exit?: TargetAndTransition | VariantLabels | undefined;
+    transition?: Transition | undefined;
+  };
+}
+
+export function SharedUI({ id, motionProps }: SharedUIProps) {
+  return (
+    <motion.div
+      {...motionProps}
+      className={`h-[402px] w-full flex flex-col items-start justify-end group-active:scale-95 duration-150 ${
+        Colors[id % 3]
+      }`}
+    >
+      <div className="px-5 py-4 w-full flex flex-col items-start justify-end gap-1">
+        <p className="text-white/80 text-sm font-semibold">NEW RELEASE</p>
+        <p className="text-white text-2xl font-bold">
+          Lorem Ipsum
+          <br /> Dolor Sit Amet
+        </p>
+        <p className="text-white/80 text-xs font-medium">The magic is here!</p>
+      </div>
+      <div className="bg-black/20 w-full px-5 py-4 flex justify-between sticky top-0 items-center">
+        {/* Left */}
+        <div className="flex items-center">
+          <div className="size-12 bg-black/80 shadow-sm rounded-lg" />
+          <div className="flex flex-col ml-2">
+            <p className="text-white text-sm font-semibold">
+              Lorem Ipsum Explorer
+            </p>
+            <p className="text-white/80 text-xs font-medium">
+              Original texts in Latin
+            </p>
+          </div>
+        </div>
+
+        {/* Right */}
+        <div className=" bg-white/30 rounded-2xl py-1.5 px-4.5">
+          <p className="text-sm font-semibold leading-snug">$9.99</p>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
