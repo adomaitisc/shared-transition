@@ -88,7 +88,7 @@ export default function App() {
                   y: initialPosition.y ?? 0,
                 }}
                 transition={{ duration: 0.25 }}
-                className="absolute top-0 left-1/2 bg-amber-300 -translate-x-1/2 h-full w-full overflow-hidden"
+                className="absolute top-0 left-1/2 -translate-x-1/2 h-full w-full overflow-hidden"
               >
                 {/* Content handles scrolling and exiting */}
                 <motion.div
