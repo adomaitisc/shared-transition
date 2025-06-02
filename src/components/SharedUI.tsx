@@ -21,7 +21,7 @@ export function SharedUI({ id, motionProps }: SharedUIProps) {
   return (
     <motion.div
       {...motionProps}
-      className={`h-[402px] w-full flex flex-col items-start justify-end group-active:scale-95 duration-150 ${
+      className={`h-[402px] w-full flex flex-col items-start justify-end ${
         Colors[id % 3]
       }`}
     >
@@ -33,12 +33,12 @@ export function SharedUI({ id, motionProps }: SharedUIProps) {
         </p>
         <p className="text-white/80 text-xs font-medium">The magic is here!</p>
       </div>
-      <div className="bg-black/20 w-full px-5 py-4 flex justify-between sticky top-0 items-center">
+      <div className="bg-black/20 w-full px-5 py-4 flex justify-between gap-8 sticky top-0 items-center">
         {/* Left */}
         <div className="flex items-center">
-          <div className="size-12 bg-black/80 shadow-sm rounded-lg" />
+          <div className="size-12 bg-black/80 mask mask-squircle shadow-sm rounded-lg" />
           <div className="flex flex-col ml-2">
-            <p className="text-white text-sm font-semibold">
+            <p className="text-white text-sm font-semibold shrink-0 text-nowrap">
               Lorem Ipsum Explorer
             </p>
             <p className="text-white/80 text-xs font-medium">
