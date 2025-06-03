@@ -1,18 +1,37 @@
+import { ExpandedContent, SharedUI } from "./components";
 import "./index.css";
-import V1 from "./v1/v1";
-import V2 from "./v2/v2";
-import { useState } from "react";
+import {
+  Content,
+  Overlay,
+  Provider,
+  SharedElement,
+  Trigger,
+} from "./v3/shared-transition";
 
 export default function App() {
-  const [activeTab, _] = useState<"v1" | "v2">("v2");
   return (
-    <>{activeTab === "v1" ? <V1 /> : <V2 />}</>
-    // <div className="relative bg-black flex flex-row flex-wrap item-center justify-center gap-4 p-4 h-full overflow-hidden">
-    //   {Array.from({ length: 100 }, (_, i) => (
-    //     <SharedTransition key={i} expandable={<ExpandedContent />}>
-    //       <SharedUI id={1} />
-    //     </SharedTransition>
-    //   ))}
-    // </div>
+    <>
+      <h1 className="text-2xl font-bold text-center my-8">
+        Shared Transition Example
+      </h1>
+      <div className="flex flex-wrap justify-center items-center overflow-hidden gap-6 mb-8">
+        {Array.from({ length: 30 }, (_, i) => (
+          <Provider key={i}>
+            <Trigger className="group pointer-events-auto">
+              <SharedElement
+                className="h-[420px] rounded-xl overflow-hidden pointer-events-none group-active:scale-95 duration-300 ease-out"
+                sharedElementClassName="h-[420px]"
+              >
+                <SharedUI id={i % 3} />
+              </SharedElement>
+            </Trigger>
+            <Overlay />
+            <Content>
+              <ExpandedContent />
+            </Content>
+          </Provider>
+        ))}
+      </div>
+    </>
   );
 }

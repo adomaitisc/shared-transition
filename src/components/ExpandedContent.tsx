@@ -7,7 +7,6 @@ export function ExpandedContent() {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.2 }}
-      style={{ width: "min(768px, 100vw)" }}
       className="shrink-0 space-y-2 px-5 py-4 h-full"
     >
       <p className="text-zinc-400 py-1 w-full flex-col overflow-hidden font-normal">

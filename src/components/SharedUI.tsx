@@ -1,27 +1,13 @@
-import type { Transition } from "motion";
-import {
-  motion,
-  type TargetAndTransition,
-  type VariantLabels,
-} from "motion/react";
-
 const Colors = ["bg-emerald-500", "bg-rose-500", "bg-violet-500"];
 
 interface SharedUIProps {
   id: number;
-  motionProps?: {
-    initial?: TargetAndTransition | VariantLabels | undefined;
-    animate?: TargetAndTransition | VariantLabels | undefined;
-    exit?: TargetAndTransition | VariantLabels | undefined;
-    transition?: Transition | undefined;
-  };
 }
 
-export function SharedUI({ id, motionProps }: SharedUIProps) {
+export function SharedUI({ id }: SharedUIProps) {
   return (
-    <motion.div
-      {...motionProps}
-      className={`h-[402px] w-full flex flex-col items-start justify-end ${
+    <div
+      className={`w-full h-full flex flex-col items-start text-left justify-end ${
         Colors[id % 3]
       }`}
     >
@@ -52,6 +38,6 @@ export function SharedUI({ id, motionProps }: SharedUIProps) {
           <p className="text-sm font-semibold leading-snug">$9.99</p>
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 }

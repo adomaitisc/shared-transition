@@ -2,18 +2,13 @@
 
 * {
   color-scheme: dark;
+  pointer-events: inherit;
 }
 
-html {
-  max-width: 100vw;
-  overflow-y: scroll;
-}
-
-body,
 #root {
   overflow: hidden;
-  height: 100%;
   background-color: black;
+  position: relative;
 }
 
 .mask {
