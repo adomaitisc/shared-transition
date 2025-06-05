@@ -74,6 +74,18 @@ export function SharedTransitionElement({
   sharedElementClassName?: string;
 }) {
   const { setChildrenToRender, isOpen } = useDialogContext();
+  const [debouncedOpacity, setDebouncedOpacity] = useState(1);
+
+  useEffect(() => {
+    if (isOpen) {
+      setDebouncedOpacity(0);
+    } else {
+      const timeout = setTimeout(() => {
+        setDebouncedOpacity(1);
+      }, 300); // Match the duration of the closing animation
+      return () => clearTimeout(timeout);
+    }
+  }, [isOpen]);
 
   useEffect(() => {
     setChildrenToRender(
@@ -87,8 +99,8 @@ export function SharedTransitionElement({
 
   return (
     <div
-      style={{ opacity: isOpen ? 0 : 1 }}
-      className={`relative select-none pointer-events-none delay-75 ${className}`}
+      style={{ opacity: debouncedOpacity }}
+      className={`relative select-none pointer-events-none ${className}`}
     >
       {children}
     </div>
@@ -145,7 +157,7 @@ export function SharedTransitionContent({ children }: { children: ReactNode }) {
       height: 0,
       opacity: 0,
       borderRadius: 10,
-      config: { tension: 120, friction: 14, mass: 0.6 },
+      config: { tension: 120, friction: 14, mass: 0.6, clamp: true },
     }));
 
   useEffect(() => {
@@ -155,6 +167,8 @@ export function SharedTransitionContent({ children }: { children: ReactNode }) {
       setShouldRender(true);
       // Opening: start from trigger rect → full screen
       setTimeout(() => {
+        // Another segment of hacky setTimeouts
+        portalRef.current?.focus();
         animate.set({
           top: startingRect.top,
           left: startingRect.left,
@@ -165,21 +179,18 @@ export function SharedTransitionContent({ children }: { children: ReactNode }) {
         });
         setTimeout(() => {
           animate.start({
-            top: 0,
-            left: 0,
-            width: window.innerWidth,
+            top: window.innerWidth > 768 ? 24 : 0,
+            left: window.innerWidth > 768 ? window.innerWidth / 2 - 384 : 0,
+            width: Math.min(window.innerWidth, 768),
             height: window.innerHeight,
-            borderRadius: 0,
+            borderRadius: window.innerWidth > 768 ? 16 : 0,
             opacity: 1,
           });
-          setTimeout(() => {
-            portalRef.current?.focus();
-          }, 1);
         }, 1);
       }, 1);
     } else {
       if (!portalRef.current) return;
-      portalRef.current.style.pointerEvents = "none";
+      portalRef.current.style.pointerEvents = "none"; // Turns out we need just _enough_ pointerEvents to make this smooth
       // Closing: animate back to trigger rect, then unmount
       animate.start({
         top: startingRect.top,
@@ -188,7 +199,6 @@ export function SharedTransitionContent({ children }: { children: ReactNode }) {
         height: startingRect.height,
         borderRadius: 10,
         opacity: 0,
-        config: { clamp: true },
         onResolve: () => {
           setShouldRender(false);
         },
@@ -208,10 +218,13 @@ export function SharedTransitionContent({ children }: { children: ReactNode }) {
         height,
         borderRadius,
       }}
-      className="fixed z-50 bg-[#1c1c1d] overflow-y-auto overscroll-y-contain overflow-x-hidden"
+      className="fixed z-50 shadow-2xl bg-[#1c1c1d] overflow-y-auto overscroll-y-contain overflow-x-hidden"
     >
       {childrenToRender}
-      <animated.div style={{ opacity }} className="w-screen h-full">
+      <animated.div
+        style={{ opacity }}
+        className="w-screen max-w-3xl h-full bg-[#1c1c1d]"
+      >
         {children}
       </animated.div>
     </animated.div>,
@@ -220,20 +233,21 @@ export function SharedTransitionContent({ children }: { children: ReactNode }) {
 }
 
 export function SharedTransitionOverlay() {
-  const [shouldShow, setShouldShow] = useState(false);
-  const { isOpen } = useDialogContext();
+  const [shouldShow, setShouldShow] = useState(false); // Feels weird and hacky as well
+  const { isOpen, close } = useDialogContext();
 
   const [{ opacity }, animateOverlay] = useSpring(() => ({
     opacity: 0,
-    config: { tension: 120, friction: 14, mass: 0.6 },
+    config: { tension: 120, friction: 14, mass: 0.6, clamp: true },
   }));
 
   useEffect(() => {
     if (isOpen) {
       setShouldShow(true);
       setTimeout(() => {
-        animateOverlay.start({ opacity: 1, config: { clamp: true } });
-      }, 1); // Small delay to ensure the overlay is visible
+        // Hacky setTimeout because it works
+        animateOverlay.start({ opacity: 1 });
+      }, 1);
     } else {
       animateOverlay.start({
         opacity: 0,
@@ -247,6 +261,7 @@ export function SharedTransitionOverlay() {
   return shouldShow
     ? ReactDOM.createPortal(
         <animated.div
+          onClick={close}
           style={{
             opacity,
           }}

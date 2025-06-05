@@ -18,7 +18,7 @@ export default function App() {
       <div className="flex flex-wrap justify-center items-center gap-6 bg-black overflow-hidden mb-8 px-5 py-2">
         {Array.from({ length: 30 }, (_, i) => (
           <SharedTransitionProvider key={i}>
-            <SharedTransitionTrigger className="group pointer-events-auto w-full max-w-xl box-content">
+            <SharedTransitionTrigger className="group pointer-events-auto w-full max-w-lg box-content">
               <SharedTransitionElement
                 className="h-[420px] rounded-xl overflow-hidden pointer-events-none"
                 sharedElementClassName="h-[420px]"
