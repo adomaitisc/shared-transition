@@ -207,7 +207,6 @@ export function SharedTransitionContent({ children }: { children: ReactNode }) {
         width,
         height,
         borderRadius,
-        pointerEvents: isOpen ? "auto" : "none",
       }}
       className="fixed z-50 bg-[#1c1c1d] overflow-y-auto overscroll-y-contain overflow-x-hidden"
     >
@@ -250,7 +249,6 @@ export function SharedTransitionOverlay() {
         <animated.div
           style={{
             opacity,
-            pointerEvents: isOpen ? "auto" : "none",
           }}
           className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40"
         />,
