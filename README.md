@@ -9,7 +9,6 @@ I tried used a context provider and a custom hook to manage the state of the tra
 ```jsx
 <SharedTransitionProvider>
   <SharedTransitionTrigger className="pointer-events-auto w-full max-w-xl">
-    {" "}
     {/* We don't want to share the trigger element */}
     <SharedTransitionElement
       className="h-[420px] rounded-xl overflow-hidden pointer-events-none"
