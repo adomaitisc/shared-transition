@@ -1,14 +1,6 @@
-import { motion } from "motion/react";
-
-export function ExpandedContent() {
+export function GenericContent() {
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.2 }}
-      className="shrink-0 space-y-2 px-5 py-4 h-full"
-    >
+    <div className="shrink-0 space-y-2 px-5 py-4 h-full">
       <p className="text-zinc-400 py-1 w-full flex-col overflow-hidden font-normal">
         <span className="font-semibold text-white">Lorem ipsum</span> dolor sit
         amet, consectetur adipiscing elit. Morbi vel nisi eros. Vestibulum
@@ -57,6 +49,6 @@ export function ExpandedContent() {
         eros, hendrerit eu iaculis tincidunt, consectetur ut urna. Donec neque
         ex, efficitur in dapibus ac, iaculis sed dui.
       </p>
-    </motion.div>
+    </div>
   );
 }

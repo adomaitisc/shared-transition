@@ -1,2 +1,9 @@
-export { ExpandedContent } from "./ExpandedContent";
-export { SharedUI } from "./SharedUI";
+export { GenericContent } from "./generic-content";
+export { GenericUI } from "./generic-ui";
+export {
+  SharedTransitionProvider,
+  SharedTransitionTrigger,
+  SharedTransitionElement,
+  SharedTransitionContent,
+  SharedTransitionOverlay,
+} from "./shared-transition";

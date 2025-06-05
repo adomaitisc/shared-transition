@@ -30,7 +30,11 @@ function useDialogContext() {
   return ctx;
 }
 
-export function Provider({ children }: { children: ReactNode }) {
+export function SharedTransitionProvider({
+  children,
+}: {
+  children: ReactNode;
+}) {
   const [isOpen, setIsOpen] = useState(false);
 
   const [childrenToRender, setChildrenToRender] = useState<ReactNode>(null);
@@ -60,7 +64,7 @@ export function Provider({ children }: { children: ReactNode }) {
   );
 }
 
-export function SharedElement({
+export function SharedTransitionElement({
   children,
   className,
   sharedElementClassName = "",
@@ -73,25 +77,25 @@ export function SharedElement({
 
   useEffect(() => {
     setChildrenToRender(
-      <Trigger
+      <SharedTransitionTrigger
         className={`relative w-full select-none ${sharedElementClassName}`}
       >
         {children}
-      </Trigger>
+      </SharedTransitionTrigger>
     );
   }, [children, sharedElementClassName, setChildrenToRender]);
 
   return (
     <div
       style={{ opacity: isOpen ? 0 : 1 }}
-      className={`relative select-none pointer-events-none ${className}`}
+      className={`relative select-none pointer-events-none delay-75 ${className}`}
     >
       {children}
     </div>
   );
 }
 
-export function Trigger({
+export function SharedTransitionTrigger({
   children,
   className,
 }: {
@@ -128,7 +132,7 @@ export function Trigger({
   );
 }
 
-export function Content({ children }: { children: ReactNode }) {
+export function SharedTransitionContent({ children }: { children: ReactNode }) {
   const { isOpen, childrenToRender, startingRect } = useDialogContext();
   const portalRef = React.useRef<HTMLDivElement | null>(null);
   const [shouldRender, setShouldRender] = useState(false);
@@ -216,7 +220,7 @@ export function Content({ children }: { children: ReactNode }) {
   );
 }
 
-export function Overlay() {
+export function SharedTransitionOverlay() {
   const [shouldShow, setShouldShow] = useState(false);
   const { isOpen } = useDialogContext();
 

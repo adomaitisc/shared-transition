@@ -5,8 +5,20 @@
   pointer-events: inherit;
 }
 
-#root {
+html {
+  position: relative;
   overflow: hidden;
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  overflow: hidden;
+}
+
+#root {
+  height: 100%;
+  overflow: scroll;
   background-color: black;
   position: relative;
 }

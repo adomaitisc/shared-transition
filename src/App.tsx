@@ -1,35 +1,46 @@
-import { ExpandedContent, SharedUI } from "./components";
-import "./index.css";
 import {
-  Content,
-  Overlay,
-  Provider,
-  SharedElement,
-  Trigger,
-} from "./v3/shared-transition";
+  SharedTransitionContent,
+  SharedTransitionOverlay,
+  SharedTransitionProvider,
+  SharedTransitionElement,
+  SharedTransitionTrigger,
+  GenericContent,
+  GenericUI,
+} from "./components";
+import "./index.css";
 
 export default function App() {
   return (
     <>
-      <h1 className="text-2xl font-bold text-center my-8">
+      <h1 className="text-2xl font-bold text-center pt-3 pb-6">
         Shared Transition Example
       </h1>
-      <div className="flex flex-wrap justify-center items-center overflow-hidden gap-6 mb-8">
+      <div className="flex flex-wrap justify-center items-center gap-6 bg-black overflow-hidden mb-8 px-5 py-2">
         {Array.from({ length: 30 }, (_, i) => (
-          <Provider key={i}>
-            <Trigger className="group pointer-events-auto">
-              <SharedElement
-                className="h-[420px] rounded-xl overflow-hidden pointer-events-none group-active:scale-95 duration-300 ease-out"
+          <SharedTransitionProvider key={i}>
+            <SharedTransitionTrigger className="group pointer-events-auto w-full max-w-xl box-content">
+              <SharedTransitionElement
+                className="h-[420px] rounded-xl overflow-hidden pointer-events-none"
                 sharedElementClassName="h-[420px]"
               >
-                <SharedUI id={i % 3} />
-              </SharedElement>
-            </Trigger>
-            <Overlay />
-            <Content>
-              <ExpandedContent />
-            </Content>
-          </Provider>
+                <GenericUI
+                  id={i % 3}
+                  superTitle="New Release"
+                  title={<span>Lorem Ipsum</span>}
+                  subTitle="The best in Latin literature"
+                  app={{
+                    name: "Lorem Explorer",
+                    description: "Find Latin texts offline",
+                    price: "$4.99",
+                  }}
+                />
+              </SharedTransitionElement>
+            </SharedTransitionTrigger>
+            <SharedTransitionOverlay />
+            <SharedTransitionContent>
+              <GenericContent />
+            </SharedTransitionContent>
+          </SharedTransitionProvider>
         ))}
       </div>
     </>
