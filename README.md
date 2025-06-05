@@ -4,7 +4,7 @@ Attempt at mimicking the transitions found on the "Today" section at the Apple's
 
 ## Demo
 
-![Slow-mo GIF]()
+![Slow-mo GIF](https://github.com/adomaitisc/shared-transition/blob/main/demo.gif)
 
 ## Deployment
 
