@@ -2,6 +2,10 @@
 
 Attempt at mimicking the transitions found on the "Today" section at the Apple's App Store.
 
+## Demo
+
+![Slow-mo GIF]()
+
 ## Deployment
 
 `git clone "the repo"` > `npm install` > `npm run dev`
