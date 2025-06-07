@@ -1,6 +1,6 @@
 export function GenericContent() {
   return (
-    <div className="shrink-0 space-y-2 px-5 py-4 h-full">
+    <div className="shrink-0 space-y-2 h-full">
       <p className="text-zinc-400 py-1 w-full flex-col overflow-hidden font-normal">
         <span className="font-semibold text-white">Lorem ipsum</span> dolor sit
         amet, consectetur adipiscing elit. Morbi vel nisi eros. Vestibulum
