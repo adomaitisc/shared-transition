@@ -7,3 +7,4 @@ export {
   SharedTransitionContent,
   SharedTransitionOverlay,
 } from "./shared-transition";
+export { SharedDialog } from "./shared-dialog";
