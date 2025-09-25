@@ -1,10 +1,4 @@
 export { GenericContent } from "./generic-content";
 export { GenericUI } from "./generic-ui";
-export {
-  SharedTransitionProvider,
-  SharedTransitionTrigger,
-  SharedTransitionElement,
-  SharedTransitionContent,
-  SharedTransitionOverlay,
-} from "./shared-transition";
+export { Badge } from "./badge";
 export { SharedDialog } from "./shared-dialog";
