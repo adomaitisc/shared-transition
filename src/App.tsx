@@ -44,7 +44,7 @@ export default function App() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub Repo"
-              className="text-white/90 text-sm font-medium hover:underline"
+              className="text-white/90 hidden md:block text-sm font-medium hover:underline"
             >
               GitHub Repo
             </a>
