@@ -33,7 +33,7 @@ const items = [
 export default function App() {
   return (
     <div className="flex flex-col h-full py-10 gap-4 items-center justify-center min-h-screen">
-      <div className="grid xl:grid-cols-2 justify-center h-full items-center gap-4 bg-black p-4">
+      <div className="grid lg:grid-cols-2 justify-center h-full items-center gap-4 bg-black p-4">
         <div className="col-span-full space-y-1.5 p-2">
           <div className="flex justify-between items-center w-full">
             <h1 className="text-white text-4xl font-bold">
