@@ -45,29 +45,31 @@ export default function App() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="GitHub"
-            className="text-white/90 px-1 text-sm font-medium hover:underline"
+            className="text-sky-400 px-0.5 text-sm font-medium hover:underline"
           >
             GitHub
           </a>
-          <h1 className="text-white text-4xl font-bold">
+          <h1 className="text-white text-3xl font-semibold">
             Shared Transition Experiment
           </h1>
-          <div className="space-y-1.5 px-1">
+          <div className="space-y-1.5 px-0.5">
             <p className="text-white/90 text-sm font-medium">
-              The purpose of this experiment was to replicate the transitions
-              found on the "Today" section at the Apple's App Store.
+              Replica of transitions found on the "Today" section at the App
+              Store.
             </p>
             <p className="text-white/90 text-sm font-medium">
-              Animations like these are really complex and they require a deeper
-              thinking about layers and interactions in the UI.
+              There are height issues on mobile devices, especially on Safari.
             </p>
             <p className="text-white/90 text-sm font-medium">
-              There are known issues with screen height and scrolling on mobile
-              devices.
-            </p>
-            <p className="text-white/90 text-sm font-medium">
-              The demo below showcases 2 cards with the same transition, images
-              are copywrite free.
+              Originally inspired by{" "}
+              <a
+                href="https://x.com/emilkowalski_/status/1762211373960900664"
+                className="text-sky-400 text-sm font-medium hover:underline"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                @emilkowalski_
+              </a>
             </p>
           </div>
         </div>
