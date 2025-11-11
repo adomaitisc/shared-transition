@@ -1,5 +1,10 @@
+import {
+  SharedDialog,
+  SharedDialogContent,
+  SharedDialogTrigger,
+} from "./components/dialog";
+import { GenericContent, GenericUI } from "./components/generic";
 import "./index.css";
-import { GenericContent, GenericUI, SharedDialog } from "./components";
 
 const items = [
   {
@@ -33,58 +38,49 @@ const items = [
 export default function App() {
   return (
     <div className="flex flex-col h-full py-10 gap-4 items-center justify-center min-h-screen">
-      <div className="grid lg:grid-cols-2 justify-center h-full items-center gap-4 bg-black p-4">
-        <div className="col-span-full space-y-1.5 p-2">
-          <div className="flex justify-between items-center w-full">
-            <h1 className="text-white text-4xl font-bold">
-              Shared Transition Experiment
-            </h1>
-            <a
-              href="https://github.com/adomaitisc/shared-transition"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="GitHub Repo"
-              className="text-white/90 hidden md:block text-sm font-medium hover:underline"
-            >
-              GitHub Repo
-            </a>
+      <div className="grid xl:grid-cols-2 justify-center h-full place-items-center gap-4 p-4">
+        <div className="col-span-full space-y-1.5 p-2 w-[90vw] max-w-[512px] mr-auto">
+          <a
+            href="https://github.com/adomaitisc/shared-transition"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub"
+            className="text-white/90 px-1 text-sm font-medium hover:underline"
+          >
+            GitHub
+          </a>
+          <h1 className="text-white text-4xl font-bold">
+            Shared Transition Experiment
+          </h1>
+          <div className="space-y-1.5 px-1">
+            <p className="text-white/90 text-sm font-medium">
+              The purpose of this experiment was to replicate the transitions
+              found on the "Today" section at the Apple's App Store.
+            </p>
+            <p className="text-white/90 text-sm font-medium">
+              Animations like these are really complex and they require a deeper
+              thinking about layers and interactions in the UI.
+            </p>
+            <p className="text-white/90 text-sm font-medium">
+              There are known issues with screen height and scrolling on mobile
+              devices.
+            </p>
+            <p className="text-white/90 text-sm font-medium">
+              The demo below showcases 2 cards with the same transition, images
+              are copywrite free.
+            </p>
           </div>
-          <p className="text-white/90 text-sm font-medium px-1">
-            The purpose of this experiment was to replicate the transitions
-            found on the "Today" section at the Apple's App Store.
-          </p>
-          <p className="text-white/90 text-sm font-medium px-1">
-            Animations like these are really complex and they require a deeper
-            thinking about layers and interactions in the UI.
-          </p>
-          <p className="text-white/90 text-sm font-medium px-1">
-            There are known issues with screen height and scrolling on mobile
-            devices.
-          </p>
-          <p className="text-white/90 text-sm font-medium px-1">
-            The demo below showcases 2 cards with the same transition, images
-            are copywrite free.
-          </p>
         </div>
 
-        {items.map((item, i) => (
-          <SharedDialog
-            key={i}
-            sharedContent={
-              <GenericUI
-                image={item.image}
-                iconImage={item.iconImage}
-                superTitle={item.superTitle}
-                title={item.title}
-                subTitle={item.subTitle}
-                app={{
-                  name: item.app.name,
-                  description: item.app.description,
-                }}
-              />
-            }
-          >
-            <GenericContent />
+        {items.map((item) => (
+          <SharedDialog key={item.title}>
+            <SharedDialogTrigger>
+              {/* Must wrap clickable elements in a propagation safe component */}
+              <GenericUI {...item} />
+            </SharedDialogTrigger>
+            <SharedDialogContent>
+              <GenericContent />
+            </SharedDialogContent>
           </SharedDialog>
         ))}
       </div>

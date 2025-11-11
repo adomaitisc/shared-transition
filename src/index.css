@@ -4,14 +4,6 @@
   color-scheme: dark;
   pointer-events: inherit;
 }
-
-#root {
-  height: 100%;
-  overflow: scroll;
-  background-color: black;
-  position: relative;
-}
-
 .mask {
   display: inline-block;
   vertical-align: middle;
