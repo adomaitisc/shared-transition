@@ -273,10 +273,13 @@ export function SharedDialogContent({
           <animated.div
             style={{
               opacity: springState.opacity,
+              filter: springState.opacity.to(
+                (op) => `blur(${Math.abs(op - 1) * 4}px)`
+              ),
               width:
                 window.innerWidth > MAX_WIDTH ? MAX_WIDTH : window.innerWidth,
             }}
-            className="px-5 py-3"
+            className="relative"
           >
             {children}
           </animated.div>

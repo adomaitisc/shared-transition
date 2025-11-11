@@ -32,7 +32,7 @@ export function GenericUI(props: GenericUIProps) {
           <p className="text-white/80 text-sm font-medium">{subTitle}</p>
         ) : null}
       </div>
-      <div className="bg-black/20 backdrop-blur-sm w-full px-5 py-4 flex justify-between gap-8 sticky top-0 items-center">
+      <div className="bg-black/20 backdrop-blur-sm w-full px-5 py-4 flex justify-between gap-8 items-center">
         {/* Left */}
         <div className="flex items-center shrink-0">
           <div className="size-12 mask overflow-hidden mask-squircle shadow-sm">
@@ -79,7 +79,7 @@ export function GenericUI(props: GenericUIProps) {
 
 export function GenericContent() {
   return (
-    <div className="shrink-0 space-y-2 h-full pb-10">
+    <div className="shrink-0 space-y-2 h-full pb-10 px-5 pt-4">
       <p className="text-zinc-400 py-1 w-full flex-col overflow-hidden font-normal">
         <span className="font-semibold text-white">Lorem ipsum</span> dolor sit
         amet, consectetur adipiscing elit. Morbi vel nisi eros. Vestibulum
